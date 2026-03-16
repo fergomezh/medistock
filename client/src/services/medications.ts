@@ -63,6 +63,16 @@ export async function deleteMedication(id: string): Promise<void> {
   if (error) throw new Error('No se puede eliminar: el medicamento tiene historial de tomas. Usá Desactivar.')
 }
 
+export async function fetchMedicationById(id: string): Promise<Medication | null> {
+  const { data, error } = await supabase
+    .from('medications')
+    .select('*')
+    .eq('id', id)
+    .single()
+  if (error) throw error
+  return data
+}
+
 export async function hasDoseLogs(medicationId: string): Promise<boolean> {
   const { count, error } = await supabase
     .from('dose_logs')

@@ -15,13 +15,27 @@ export async function fetchDoseLogs(medicationId?: string): Promise<DoseLog[]> {
   return data
 }
 
-export async function fetchAllDoseLogs(): Promise<DoseLog[]> {
+export interface DoseLogWithMedication extends DoseLog {
+  medication: { name: string }
+}
+
+export async function fetchAllDoseLogs(): Promise<DoseLogWithMedication[]> {
   const { data, error } = await supabase
     .from('dose_logs')
-    .select('*, medication:medications(name, dose_amount, quantity_unit)')
+    .select('*, medication:medications(name)')
     .order('scheduled_at', { ascending: false })
-  if (error) throw new Error(error.message)
-  return data
+  if (error) throw error
+  return data as DoseLogWithMedication[]
+}
+
+export async function fetchDoseLogsByMedicationId(medicationId: string): Promise<DoseLog[]> {
+  const { data, error } = await supabase
+    .from('dose_logs')
+    .select('*')
+    .eq('medication_id', medicationId)
+    .order('scheduled_at', { ascending: false })
+  if (error) throw error
+  return data ?? []
 }
 
 export async function fetchTodayDoseLogs(): Promise<DoseLog[]> {

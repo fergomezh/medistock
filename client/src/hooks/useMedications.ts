@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import {
-  fetchMedications, fetchMedication,
+  fetchMedications, fetchMedication, fetchMedicationById,
   createMedication, updateMedication,
   deactivateMedication, deleteMedication,
 } from '../services/medications'
@@ -45,6 +45,14 @@ export function useDeactivateMedication() {
   return useMutation({
     mutationFn: (id: string) => deactivateMedication(id),
     onSuccess: () => qc.invalidateQueries({ queryKey: MEDICATIONS_KEY }),
+  })
+}
+
+export function useMedicationById(id: string) {
+  return useQuery({
+    queryKey: ['medications', id],
+    queryFn: () => fetchMedicationById(id),
+    enabled: !!id,
   })
 }
 

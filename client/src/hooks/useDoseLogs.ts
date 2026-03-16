@@ -1,5 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import { fetchDoseLogs, fetchAllDoseLogs, fetchTodayDoseLogs, markDoseTaken, skipDose } from '../services/doseLogs'
+import { fetchDoseLogs, fetchAllDoseLogs, fetchDoseLogsByMedicationId, fetchTodayDoseLogs, markDoseTaken, skipDose } from '../services/doseLogs'
 
 export const DOSE_LOGS_KEY = ['dose_logs']
 export const TODAY_LOGS_KEY = ['dose_logs', 'today']
@@ -37,6 +37,14 @@ export function useMarkDoseTaken() {
       qc.invalidateQueries({ queryKey: ['medications'] }) // stock actualizado
       qc.invalidateQueries({ queryKey: ['alerts'] })
     },
+  })
+}
+
+export function useDoseLogsByMedicationId(medicationId: string) {
+  return useQuery({
+    queryKey: ['dose_logs', 'by_medication', medicationId],
+    queryFn: () => fetchDoseLogsByMedicationId(medicationId),
+    enabled: !!medicationId,
   })
 }
 
