@@ -1,5 +1,6 @@
 // client/src/pages/Configuracion.tsx
-import { useState, FormEvent, useEffect } from 'react'
+import { useState, useEffect } from 'react'
+import type { FormEvent } from 'react'
 import { useAuth } from '../context/AuthContext'
 import { useProfile, useUpdateProfile } from '../hooks/useProfile'
 import Button from '../components/ui/Button'

@@ -15,7 +15,7 @@ export async function fetchDoseLogs(medicationId?: string): Promise<DoseLog[]> {
   return data
 }
 
-export interface DoseLogWithMedication extends DoseLog {
+export type DoseLogWithMedication = Omit<DoseLog, 'medication'> & {
   medication: { name: string }
 }
 

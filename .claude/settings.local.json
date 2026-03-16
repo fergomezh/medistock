@@ -1,0 +1,43 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(bash \"C:/Users/fergo/.claude/plugins/cache/claude-plugins-official/superpowers/5.0.2/skills/brainstorming/scripts/start-server.sh\" --project-dir \"C:/Users/fergo/Documents/Projects/medicine-tracker\")",
+      "Bash(curl:*)",
+      "Bash(netstat:*)",
+      "Bash(bash \"C:/Users/fergo/.claude/plugins/cache/claude-plugins-official/superpowers/5.0.2/skills/brainstorming/scripts/start-server.sh\" --project-dir \"C:/Users/fergo/Documents/Projects/medicine-tracker\" --host 0.0.0.0 --url-host localhost)",
+      "Bash(cat:*)",
+      "Bash(head:*)",
+      "Bash(grep:*)",
+      "Bash(npm create:*)",
+      "Bash(cd:*)",
+      "Bash(npx:*)",
+      "Bash(yes:*)",
+      "Bash(ls:*)",
+      "Bash(node:*)",
+      "Bash(./node_modules/.bin/tailwindcss init:*)",
+      "Bash(npm install:*)",
+      "Bash(git add:*)",
+      "mcp__plugin_supabase_supabase__list_projects",
+      "mcp__plugin_supabase_supabase__list_organizations",
+      "mcp__plugin_supabase_supabase__create_project",
+      "mcp__plugin_supabase_supabase__pause_project",
+      "mcp__plugin_supabase_supabase__confirm_cost",
+      "mcp__plugin_supabase_supabase__get_project_url",
+      "mcp__plugin_supabase_supabase__get_publishable_keys",
+      "mcp__plugin_supabase_supabase__apply_migration",
+      "Bash(node_modules/.bin/vitest run:*)",
+      "Bash(/c/Users/fergo/Documents/Projects/medicine-tracker/client/node_modules/.bin/vitest.cmd run:*)",
+      "Bash(npm run:*)",
+      "Bash(vercel:*)",
+      "Read(//c/Users/fergo/.local/share/com.vercel.cli/**)",
+      "Read(//c/Users/fergo/Documents/Projects/medicine-tracker/client/$APPDATA/com.vercel.cli/**)",
+      "Read(//c/Users/fergo/Documents/Projects/medicine-tracker/client/$USERPROFILE/.local/share/com.vercel.cli/**)",
+      "Read(//c/Users/fergo/Documents/Projects/medicine-tracker/client/$APPDATA/**)",
+      "Read(//c/Users/fergo/Documents/Projects/medicine-tracker/client/$LOCALAPPDATA/**)",
+      "Bash(git config:*)",
+      "Bash(gh repo:*)",
+      "Bash(git init:*)",
+      "Bash(git remote:*)"
+    ]
+  }
+}

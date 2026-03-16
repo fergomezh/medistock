@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { LayoutDashboard, Package, ClipboardList, Settings, LogOut } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
