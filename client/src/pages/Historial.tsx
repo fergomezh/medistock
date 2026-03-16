@@ -1,8 +1,11 @@
 // client/src/pages/Historial.tsx
 import { useState, useMemo } from 'react'
+import { FileSpreadsheet } from 'lucide-react'
 import { useAllDoseLogs } from '../hooks/useDoseLogs'
 import { useMedications } from '../hooks/useMedications'
 import { formatDate, formatDoseTime } from '../utils/dates'
+import { exportHistorialExcel } from '../services/export'
+import type { DoseLogWithMedication } from '../services/doseLogs'
 
 type StatusFilter = 'all' | 'taken' | 'skipped' | 'missed'
 
@@ -34,7 +37,14 @@ export default function Historial() {
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <h1 className="text-xl font-bold text-slate-900">Historial de tomas</h1>
-        {/* Botón exportar Excel — se agrega en Task 25 */}
+        <button
+          onClick={() => exportHistorialExcel(medications, logs as DoseLogWithMedication[])}
+          title="Exportar Excel"
+          aria-label="Exportar Excel"
+          className="w-9 h-9 flex items-center justify-center rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 transition-colors"
+        >
+          <FileSpreadsheet size={16} />
+        </button>
       </div>
 
       {/* Filters */}

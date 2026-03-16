@@ -1,8 +1,9 @@
 // client/src/pages/Inventario.tsx
 import { useState } from 'react'
-import { Plus, Search } from 'lucide-react'
+import { Plus, Search, FileText, FileSpreadsheet } from 'lucide-react'
 import { useMedications } from '../hooks/useMedications'
 import { daysUntil } from '../utils/dates'
+import { exportInventoryPDF, exportInventoryExcel } from '../services/export'
 import MedicationCard from '../components/MedicationCard'
 import MedicationForm from '../components/MedicationForm'
 
@@ -33,7 +34,24 @@ export default function Inventario() {
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <h1 className="text-xl font-bold text-slate-900">Inventario</h1>
-        {/* Botones de exportación — se agregan en Task 25 */}
+        <div className="flex gap-2">
+          <button
+            onClick={() => exportInventoryPDF(medications.filter(m => m.active))}
+            title="Exportar PDF"
+            aria-label="Exportar PDF"
+            className="w-9 h-9 flex items-center justify-center rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 transition-colors"
+          >
+            <FileText size={16} />
+          </button>
+          <button
+            onClick={() => exportInventoryExcel(medications.filter(m => m.active))}
+            title="Exportar Excel"
+            aria-label="Exportar Excel"
+            className="w-9 h-9 flex items-center justify-center rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 transition-colors"
+          >
+            <FileSpreadsheet size={16} />
+          </button>
+        </div>
       </div>
 
       {/* Search */}
