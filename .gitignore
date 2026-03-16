@@ -1,0 +1,20 @@
+# Env files
+client/.env.local
+client/.env
+
+# Node
+node_modules/
+client/node_modules/
+
+# Build
+client/dist/
+
+# Supabase
+.supabase/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Superpowers
+.superpowers/
