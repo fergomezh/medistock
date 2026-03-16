@@ -1,6 +1,7 @@
 import { CheckCircle2, Circle, SkipForward, Clock } from 'lucide-react'
 import { useMarkDoseTaken, useSkipDose } from '../hooks/useDoseLogs'
 import { formatDoseTime } from '../utils/dates'
+import { useToast } from './ui/Toast'
 import type { ScheduledDose } from '../types'
 
 interface DoseTrackerProps {
@@ -11,12 +12,31 @@ export default function DoseTracker({ scheduledDose }: DoseTrackerProps) {
   const { medication, scheduledTime, scheduledAt, logEntry } = scheduledDose
   const markTaken = useMarkDoseTaken()
   const skipDose = useSkipDose()
+  const { toast } = useToast()
 
   const scheduledAtISO = scheduledAt.toISOString()
   const isPending = logEntry === null
   const isTaken = logEntry?.status === 'taken'
   const isSkipped = logEntry?.status === 'skipped'
   const isMissed = logEntry?.status === 'missed'
+
+  async function handleTake() {
+    try {
+      await markTaken.mutateAsync({ medicationId: medication.id, scheduledAt: scheduledAtISO })
+      toast(`Dosis de ${medication.name} registrada`)
+    } catch {
+      toast('No se pudo registrar la dosis', 'error')
+    }
+  }
+
+  async function handleSkip() {
+    try {
+      await skipDose.mutateAsync({ medicationId: medication.id, scheduledAt: scheduledAtISO })
+      toast(`Dosis de ${medication.name} omitida`)
+    } catch {
+      toast('No se pudo omitir la dosis', 'error')
+    }
+  }
 
   return (
     <div className={`flex items-center gap-3 p-3 rounded-xl transition-colors ${
@@ -26,9 +46,9 @@ export default function DoseTracker({ scheduledDose }: DoseTrackerProps) {
       : 'bg-white border border-slate-100 hover:border-slate-200'
     }`}>
       {/* Status icon */}
-      <div className="shrink-0">
+      <div className="shrink-0" aria-hidden="true">
         {isTaken   && <CheckCircle2 size={22} className="text-health-500" />}
-        {isSkipped && <SkipForward  size={22} className="text-slate-400" />}
+        {isSkipped && <SkipForward  size={22} className="text-slate-500" />}
         {isMissed  && <Circle       size={22} className="text-red-400" />}
         {isPending && <Clock        size={22} className="text-slate-300" />}
       </div>
@@ -45,18 +65,18 @@ export default function DoseTracker({ scheduledDose }: DoseTrackerProps) {
       {isPending && (
         <div className="flex items-center gap-1 shrink-0">
           <button
-            onClick={() => markTaken.mutate({ medicationId: medication.id, scheduledAt: scheduledAtISO })}
+            onClick={handleTake}
             disabled={markTaken.isPending}
             aria-label={`Tomar ${medication.name}`}
-            className="px-3 py-1.5 bg-health-500 hover:bg-health-600 text-white text-xs font-medium rounded-lg transition-colors disabled:opacity-60"
+            className="px-3 py-1.5 bg-health-500 hover:bg-health-600 text-white text-xs font-medium rounded-lg transition-colors disabled:opacity-60 min-h-[36px]"
           >
             Tomar
           </button>
           <button
-            onClick={() => skipDose.mutate({ medicationId: medication.id, scheduledAt: scheduledAtISO })}
+            onClick={handleSkip}
             disabled={skipDose.isPending}
             aria-label={`Omitir ${medication.name}`}
-            className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-medium rounded-lg transition-colors disabled:opacity-60"
+            className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-medium rounded-lg transition-colors disabled:opacity-60 min-h-[36px]"
           >
             Omitir
           </button>

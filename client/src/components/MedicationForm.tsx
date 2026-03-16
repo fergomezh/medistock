@@ -1,15 +1,17 @@
 import { useState, useEffect } from 'react'
-import type { FormEvent } from 'react'
+import type { FormEvent, RefObject } from 'react'
 import { Plus, Trash2 } from 'lucide-react'
 import Modal from './ui/Modal'
 import Button from './ui/Button'
 import { useCreateMedication, useUpdateMedication } from '../hooks/useMedications'
+import { useToast } from './ui/Toast'
 import type { Medication, MedicationFormData } from '../types'
 
 interface MedicationFormProps {
   open: boolean
   onClose: () => void
   medication?: Medication
+  triggerRef?: RefObject<HTMLElement | null>
 }
 
 const EMPTY_FORM: MedicationFormData = {
@@ -28,9 +30,10 @@ const EMPTY_FORM: MedicationFormData = {
 
 const UNIT_OPTIONS = ['pastillas', 'cápsulas', 'ml', 'gotas', 'comprimidos', 'sobres', 'unidades']
 
-export default function MedicationForm({ open, onClose, medication }: MedicationFormProps) {
+export default function MedicationForm({ open, onClose, medication, triggerRef }: MedicationFormProps) {
   const [form, setForm] = useState<MedicationFormData>(EMPTY_FORM)
   const [error, setError] = useState<string | null>(null)
+  const { toast } = useToast()
 
   const createMutation = useCreateMedication()
   const updateMutation = useUpdateMedication()
@@ -74,8 +77,10 @@ export default function MedicationForm({ open, onClose, medication }: Medication
     try {
       if (isEditing) {
         await updateMutation.mutateAsync({ id: medication!.id, payload: form })
+        toast(`${form.name} actualizado correctamente`)
       } else {
         await createMutation.mutateAsync(form)
+        toast(`${form.name} agregado al inventario`)
       }
       onClose()
     } catch (err) {
@@ -84,17 +89,32 @@ export default function MedicationForm({ open, onClose, medication }: Medication
   }
 
   return (
-    <Modal open={open} onClose={onClose} title={isEditing ? 'Editar medicamento' : 'Nuevo medicamento'} maxWidth="max-w-xl">
+    <Modal
+      open={open}
+      onClose={onClose}
+      title={isEditing ? 'Editar medicamento' : 'Nuevo medicamento'}
+      maxWidth="max-w-xl"
+      triggerRef={triggerRef}
+    >
       <form onSubmit={handleSubmit} className="space-y-4">
         {error && (
           <div role="alert" className="bg-red-50 text-red-700 text-sm px-4 py-3 rounded-xl border border-red-100">{error}</div>
         )}
 
         <div>
-          <label htmlFor="med-name" className="block text-sm font-medium text-slate-700 mb-1.5">Nombre *</label>
-          <input id="med-name" type="text" value={form.name} onChange={e => setField('name', e.target.value)}
+          <label htmlFor="med-name" className="block text-sm font-medium text-slate-700 mb-1.5">
+            Nombre <span aria-hidden="true">*</span>
+          </label>
+          <input
+            id="med-name"
+            type="text"
+            required
+            aria-required="true"
+            value={form.name}
+            onChange={e => setField('name', e.target.value)}
             className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-health-400 text-sm"
-            placeholder="Ej: Ibuprofeno 400mg" />
+            placeholder="Ej: Ibuprofeno 400mg"
+          />
         </div>
 
         <div>
@@ -146,7 +166,7 @@ export default function MedicationForm({ open, onClose, medication }: Medication
             <span className="block text-sm font-medium text-slate-700">Horarios de toma</span>
             <button type="button" onClick={addDoseTime}
               className="text-xs text-health-600 hover:text-health-700 flex items-center gap-1 font-medium">
-              <Plus size={13} /> Agregar
+              <Plus size={13} aria-hidden="true" /> Agregar
             </button>
           </div>
           <div className="space-y-2">
@@ -159,7 +179,7 @@ export default function MedicationForm({ open, onClose, medication }: Medication
                   <button type="button" onClick={() => removeDoseTime(i)}
                     aria-label={`Eliminar horario ${i + 1}`}
                     className="w-9 h-9 flex items-center justify-center text-red-400 hover:text-red-600 hover:bg-red-50 rounded-xl transition-colors">
-                    <Trash2 size={15} />
+                    <Trash2 size={15} aria-hidden="true" />
                   </button>
                 )}
               </div>

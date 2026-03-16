@@ -1,11 +1,12 @@
 // client/src/pages/Inventario.tsx
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { Plus, Search, FileText, FileSpreadsheet } from 'lucide-react'
 import { useMedications } from '../hooks/useMedications'
 import { daysUntil } from '../utils/dates'
 import { exportInventoryPDF, exportInventoryExcel } from '../services/export'
 import MedicationCard from '../components/MedicationCard'
 import MedicationForm from '../components/MedicationForm'
+import { SkeletonCard } from '../components/ui/Skeleton'
 
 type FilterType = 'all' | 'active' | 'lowstock' | 'expiring'
 
@@ -18,6 +19,7 @@ export default function Inventario() {
   const [search, setSearch]   = useState('')
   const [filter, setFilter]   = useState<FilterType>('active')
   const [showForm, setShowForm] = useState(false)
+  const fabRef = useRef<HTMLButtonElement>(null)
 
   const filtered = medications.filter(m => {
     const matchesSearch  = m.name.toLowerCase().includes(search.toLowerCase())
@@ -35,44 +37,47 @@ export default function Inventario() {
       <div className="flex items-center justify-between">
         <h1 className="text-xl font-bold text-slate-900">Inventario</h1>
         <div className="flex gap-2">
+          {/* Export buttons: min 44×44 touch target */}
           <button
             onClick={() => exportInventoryPDF(medications.filter(m => m.active))}
             title="Exportar PDF"
             aria-label="Exportar PDF"
-            className="w-9 h-9 flex items-center justify-center rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 transition-colors"
+            className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 transition-colors px-2"
           >
-            <FileText size={16} />
+            <FileText size={16} aria-hidden="true" />
           </button>
           <button
             onClick={() => exportInventoryExcel(medications.filter(m => m.active))}
             title="Exportar Excel"
             aria-label="Exportar Excel"
-            className="w-9 h-9 flex items-center justify-center rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 transition-colors"
+            className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 transition-colors px-2"
           >
-            <FileSpreadsheet size={16} />
+            <FileSpreadsheet size={16} aria-hidden="true" />
           </button>
         </div>
       </div>
 
       {/* Search */}
       <div className="relative">
-        <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
+        <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" aria-hidden="true" />
         <input
           type="search"
           placeholder="Buscar medicamento..."
           value={search}
           onChange={e => setSearch(e.target.value)}
           className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-health-400 text-sm bg-white"
+          aria-label="Buscar medicamento"
         />
       </div>
 
-      {/* Filter chips */}
-      <div className="flex gap-2 overflow-x-auto pb-1">
+      {/* Filter chips — proper radio group ARIA */}
+      <div role="group" aria-label="Filtrar medicamentos" className="flex gap-2 overflow-x-auto pb-1">
         {(Object.keys(FILTER_LABELS) as FilterType[]).map(f => (
           <button
             key={f}
             onClick={() => setFilter(f)}
-            className={`shrink-0 px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
+            aria-pressed={filter === f}
+            className={`shrink-0 px-3 min-h-[44px] rounded-full text-xs font-medium transition-colors ${
               filter === f
                 ? 'bg-health-500 text-white'
                 : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'
@@ -85,9 +90,11 @@ export default function Inventario() {
 
       {/* Medication list */}
       {isLoading ? (
-        <p className="text-sm text-slate-400 text-center py-12">Cargando...</p>
+        <div className="grid gap-3 sm:grid-cols-2">
+          {Array.from({ length: 4 }).map((_, i) => <SkeletonCard key={i} />)}
+        </div>
       ) : filtered.length === 0 ? (
-        <p className="text-sm text-slate-400 text-center py-12">No hay medicamentos.</p>
+        <p className="text-sm text-slate-500 text-center py-12">No hay medicamentos.</p>
       ) : (
         <div className="grid gap-3 sm:grid-cols-2">
           {filtered.map(m => <MedicationCard key={m.id} medication={m} />)}
@@ -96,6 +103,7 @@ export default function Inventario() {
 
       {/* FAB */}
       <button
+        ref={fabRef}
         onClick={() => setShowForm(true)}
         aria-label="Agregar medicamento"
         className="fixed bottom-20 right-4 md:bottom-6 md:right-6 w-14 h-14 bg-health-500 hover:bg-health-600 text-white rounded-full shadow-lg shadow-health-200 flex items-center justify-center transition-colors z-20"
@@ -103,7 +111,7 @@ export default function Inventario() {
         <Plus size={24} />
       </button>
 
-      <MedicationForm open={showForm} onClose={() => setShowForm(false)} />
+      <MedicationForm open={showForm} onClose={() => setShowForm(false)} triggerRef={fabRef} />
     </div>
   )
 }

@@ -1,6 +1,6 @@
 // client/src/pages/Notificaciones.tsx
 import type { ElementType } from 'react'
-import { Bell, Package, Clock, ShoppingCart, AlertTriangle } from 'lucide-react'
+import { Bell, Package, Clock, ShoppingCart, AlertTriangle, Check } from 'lucide-react'
 import { useAlerts, useMarkAlertRead, useMarkAllAlertsRead } from '../hooks/useAlerts'
 import { formatDate } from '../utils/dates'
 import Button from '../components/ui/Button'
@@ -37,17 +37,18 @@ export default function Notificaciones() {
       </div>
 
       {isLoading ? (
-        <p className="text-sm text-slate-400 text-center py-12">Cargando...</p>
+        <p className="text-sm text-slate-500 text-center py-12">Cargando...</p>
       ) : alerts.length === 0 ? (
         <div className="text-center py-12">
-          <Bell size={32} className="mx-auto text-slate-200 mb-3" />
-          <p className="text-sm text-slate-400">Sin notificaciones.</p>
+          <Bell size={32} className="mx-auto text-slate-200 mb-3" aria-hidden="true" />
+          <p className="text-sm text-slate-500">Sin notificaciones.</p>
         </div>
       ) : (
-        <div className="space-y-2">
+        // aria-live so screen readers announce changes when alerts are marked read
+        <div className="space-y-2" aria-live="polite" aria-atomic="false">
           {alerts.map(alert => {
             const Icon  = TYPE_ICON[alert.type]  ?? Bell
-            const color = TYPE_COLOR[alert.type] ?? 'text-slate-400'
+            const color = TYPE_COLOR[alert.type] ?? 'text-slate-500'
             return (
               <div
                 key={alert.id}
@@ -56,16 +57,24 @@ export default function Notificaciones() {
                 }`}
               >
                 <div className={`w-9 h-9 rounded-xl bg-slate-50 flex items-center justify-center shrink-0 ${color}`}>
-                  <Icon size={16} />
+                  <Icon size={16} aria-hidden="true" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm text-slate-900">{alert.message}</p>
-                  <p className="text-xs text-slate-400 mt-0.5">{formatDate(alert.triggered_at)}</p>
+                  <p className="text-xs text-slate-500 mt-0.5">{formatDate(alert.triggered_at)}</p>
+                  {/* Read state as text, not opacity-only — satisfies color-not-only */}
+                  {alert.is_read && (
+                    <span className="inline-flex items-center gap-1 mt-1 text-xs text-slate-400">
+                      <Check size={11} aria-hidden="true" />
+                      Leída
+                    </span>
+                  )}
                 </div>
                 {!alert.is_read && (
                   <button
                     onClick={() => markRead.mutate(alert.id)}
-                    className="text-xs text-health-600 hover:text-health-700 font-medium shrink-0 mt-0.5"
+                    aria-label="Marcar como leída"
+                    className="min-w-[44px] min-h-[44px] flex items-center justify-center px-2 text-xs text-health-600 hover:text-health-700 font-medium shrink-0 rounded-lg hover:bg-health-50 transition-colors"
                   >
                     Leer
                   </button>

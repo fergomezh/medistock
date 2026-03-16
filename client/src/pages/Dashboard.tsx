@@ -9,11 +9,14 @@ import { buildTodaySchedule } from '../services/doseLogs'
 import { daysUntil } from '../utils/dates'
 import DoseTracker from '../components/DoseTracker'
 import MedicationCard from '../components/MedicationCard'
+import { SkeletonCard, SkeletonDoseRow } from '../components/ui/Skeleton'
 
 export default function Dashboard() {
-  const { data: medications = [] } = useMedications()
-  const { data: todayLogs = [] } = useTodayDoseLogs()
+  const { data: medications = [], isLoading: medsLoading } = useMedications()
+  const { data: todayLogs = [], isLoading: logsLoading } = useTodayDoseLogs()
   const { data: unreadCount = 0 } = useUnreadAlertsCount()
+
+  const isLoading = medsLoading || logsLoading
 
   const schedule = useMemo(
     () => buildTodaySchedule(medications, todayLogs),
@@ -45,8 +48,12 @@ export default function Dashboard() {
       {/* Today's doses */}
       <section>
         <h2 className="text-sm font-semibold text-slate-700 mb-3">Dosis de hoy</h2>
-        {schedule.length === 0 ? (
-          <p className="text-sm text-slate-400 text-center py-8">No hay dosis programadas para hoy.</p>
+        {isLoading ? (
+          <div className="space-y-2">
+            {Array.from({ length: 3 }).map((_, i) => <SkeletonDoseRow key={i} />)}
+          </div>
+        ) : schedule.length === 0 ? (
+          <p className="text-sm text-slate-500 text-center py-8">No hay dosis programadas para hoy.</p>
         ) : (
           <div className="space-y-2">
             {schedule.map((dose, i) => (
@@ -57,10 +64,10 @@ export default function Dashboard() {
       </section>
 
       {/* Low stock */}
-      {lowStock.length > 0 && (
+      {isLoading ? null : lowStock.length > 0 && (
         <section>
           <h2 className="text-sm font-semibold text-slate-700 mb-3 flex items-center gap-2">
-            <AlertTriangle size={14} className="text-yellow-500" />
+            <AlertTriangle size={14} className="text-yellow-500" aria-hidden="true" />
             Stock bajo
           </h2>
           <div className="grid gap-3 sm:grid-cols-2">
@@ -70,15 +77,21 @@ export default function Dashboard() {
       )}
 
       {/* Expiring soon */}
-      {expiringSoon.length > 0 && (
+      {isLoading ? null : expiringSoon.length > 0 && (
         <section>
           <h2 className="text-sm font-semibold text-slate-700 mb-3 flex items-center gap-2">
-            <AlertTriangle size={14} className="text-red-500" />
+            <AlertTriangle size={14} className="text-red-500" aria-hidden="true" />
             Próximos a vencer
           </h2>
-          <div className="grid gap-3 sm:grid-cols-2">
-            {expiringSoon.map(m => <MedicationCard key={m.id} medication={m} />)}
-          </div>
+          {isLoading ? (
+            <div className="grid gap-3 sm:grid-cols-2">
+              {Array.from({ length: 2 }).map((_, i) => <SkeletonCard key={i} />)}
+            </div>
+          ) : (
+            <div className="grid gap-3 sm:grid-cols-2">
+              {expiringSoon.map(m => <MedicationCard key={m.id} medication={m} />)}
+            </div>
+          )}
         </section>
       )}
     </div>
@@ -96,14 +109,14 @@ const colorMap: Record<StatCardProps['color'], string> = {
   green:  'bg-health-50 text-health-600',
   red:    'bg-red-50 text-red-600',
   yellow: 'bg-yellow-50 text-yellow-600',
-  gray:   'bg-slate-50 text-slate-400',
+  gray:   'bg-slate-50 text-slate-500',
 }
 
 function StatCard({ icon: Icon, label, value, color }: StatCardProps) {
   return (
     <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 flex flex-col gap-2">
       <div className={`w-8 h-8 rounded-xl flex items-center justify-center ${colorMap[color]}`}>
-        <Icon size={16} />
+        <Icon size={16} aria-hidden="true" />
       </div>
       <div>
         <p className="text-2xl font-bold text-slate-900">{value}</p>

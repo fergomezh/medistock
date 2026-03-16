@@ -31,7 +31,7 @@ export default function MedicationCard({ medication, marginDays = 5 }: Medicatio
           </div>
         </div>
         {!medication.active && (
-          <span className="text-xs text-slate-400 bg-slate-100 px-2 py-0.5 rounded-full shrink-0">
+          <span className="text-xs text-slate-500 bg-slate-100 px-2 py-0.5 rounded-full shrink-0">
             Inactivo
           </span>
         )}
@@ -47,7 +47,7 @@ export default function MedicationCard({ medication, marginDays = 5 }: Medicatio
       <div className="flex items-center justify-between mt-3 pt-3 border-t border-slate-50">
         <RestockDateChip medication={medication} marginDays={marginDays} />
         {nextDoseTime && (
-          <span className="text-xs text-slate-400">
+          <span className="text-xs text-slate-500">
             Próxima: {formatDoseTime(nextDoseTime)}
           </span>
         )}
