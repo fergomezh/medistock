@@ -54,7 +54,7 @@ serve(async (_req) => {
           'Content-Type':  'application/json',
         },
         body: JSON.stringify({
-          from:    'MediStock <resumen@medistock.app>',
+          from:    'MediStock <onboarding@resend.dev>',
           to:      [profile.notification_email],
           subject: '💊 Tu resumen de dosis de hoy',
           html:    `<h2>Tus dosis de hoy</h2><ul>${doseItems.join('')}</ul>` +

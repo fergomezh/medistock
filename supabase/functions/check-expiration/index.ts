@@ -73,7 +73,7 @@ serve(async (_req) => {
           'Content-Type':  'application/json',
         },
         body: JSON.stringify({
-          from:    'MediStock <alertas@medistock.app>',
+          from:    'MediStock <onboarding@resend.dev>',
           to:      [to],
           subject,
           html:    `<p>Tu medicamento <strong>${med.name}</strong> vence el ` +
