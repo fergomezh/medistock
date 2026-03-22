@@ -52,10 +52,10 @@ export default function Configuracion() {
 
   return (
     <div className="max-w-lg mx-auto space-y-6">
-      <h1 className="text-xl font-bold text-slate-900 tracking-tight">Configuración</h1>
+      <h1 className="text-xl font-bold text-slate-900 dark:text-slate-100 tracking-tight">Configuración</h1>
 
       {/* Profile form */}
-      <form onSubmit={handleSubmit} className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm p-6 space-y-4">
+      <form onSubmit={handleSubmit} className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm p-6 space-y-4">
         <h2 className="text-sm font-semibold text-slate-700 dark:text-slate-300">Perfil</h2>
 
         {success && (
@@ -78,7 +78,7 @@ export default function Configuracion() {
             type="text"
             value={name}
             onChange={e => setName(e.target.value)}
-            className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-100 dark:placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-health-400 text-sm"
+            className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-health-400 text-sm"
           />
         </div>
 
@@ -105,7 +105,7 @@ export default function Configuracion() {
             value={notifEmail}
             onChange={e => setNotifEmail(e.target.value)}
             placeholder={user?.email ?? ''}
-            className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-100 dark:placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-health-400 text-sm"
+            className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-health-400 text-sm"
           />
           <p className="text-xs text-slate-400 mt-1">
             Si está vacío, se usará el email de la cuenta.
@@ -123,7 +123,7 @@ export default function Configuracion() {
             max="30"
             value={marginDays}
             onChange={e => setMarginDays(Number(e.target.value))}
-            className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-100 dark:placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-health-400 text-sm"
+            className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-health-400 text-sm"
           />
         </div>
 
@@ -146,7 +146,7 @@ export default function Configuracion() {
       </form>
 
       {/* Password change */}
-      <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm p-6">
+      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm p-6">
         <h2 className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-3">Seguridad</h2>
         {pwSent ? (
           <p className="text-sm text-health-600">

@@ -42,8 +42,8 @@ export default function DoseTracker({ scheduledDose }: DoseTrackerProps) {
     <div className={`flex items-center gap-3 p-3 rounded-xl transition-colors ${
       isTaken   ? 'bg-health-50 dark:bg-health-900/20 border border-health-100 dark:border-health-800'
       : isMissed  ? 'bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-800'
-      : isSkipped ? 'bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700'
-      : 'bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:border-slate-200 dark:hover:border-slate-600'
+      : isSkipped ? 'bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800'
+      : 'bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 hover:border-slate-200 dark:hover:border-slate-700'
     }`}>
       {/* Status icon */}
       <div className="shrink-0" aria-hidden="true">

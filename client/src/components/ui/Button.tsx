@@ -6,9 +6,9 @@ type ButtonSize = 'sm' | 'md' | 'lg'
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:   'bg-health-500 hover:bg-health-600 text-white shadow-sm shadow-health-200',
-  secondary: 'bg-white dark:bg-slate-700 hover:bg-slate-50 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-600',
+  secondary: 'bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700',
   danger:    'bg-red-500 hover:bg-red-600 text-white',
-  ghost:     'hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-400',
+  ghost:     'hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400',
 }
 
 const sizeClasses: Record<ButtonSize, string> = {

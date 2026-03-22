@@ -44,7 +44,7 @@ export default function MedicationCard({ medication, marginDays = 5 }: Medicatio
       </div>
 
       {/* Footer */}
-      <div className="flex items-center justify-between mt-3 pt-3 border-t border-slate-50 dark:border-slate-700">
+      <div className="flex items-center justify-between mt-3 pt-3 border-t border-slate-50 dark:border-slate-800">
         <RestockDateChip medication={medication} marginDays={marginDays} />
         {nextDoseTime && (
           <span className="text-xs text-slate-500 dark:text-slate-400">

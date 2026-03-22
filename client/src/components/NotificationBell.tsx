@@ -9,7 +9,7 @@ export default function NotificationBell() {
   return (
     <button
       onClick={() => navigate('/notificaciones')}
-      className="relative w-9 h-9 flex items-center justify-center rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 transition-colors"
+      className="relative w-9 h-9 flex items-center justify-center rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900 text-slate-500 dark:text-slate-400 transition-colors"
       aria-label={`Notificaciones${count > 0 ? ` (${count} sin leer)` : ''}`}
     >
       <Bell size={18} />

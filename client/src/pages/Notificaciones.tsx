@@ -56,7 +56,7 @@ export default function Notificaciones() {
                   alert.is_read ? 'border-slate-100 dark:border-slate-700 opacity-60' : 'border-health-100 dark:border-health-800'
                 }`}
               >
-                <div className={`w-9 h-9 rounded-xl bg-slate-50 dark:bg-slate-700 flex items-center justify-center shrink-0 ${color}`}>
+                <div className={`w-9 h-9 rounded-xl bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0 ${color}`}>
                   <Icon size={16} aria-hidden="true" />
                 </div>
                 <div className="flex-1 min-w-0">

@@ -34,8 +34,8 @@ export default function Dashboard() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-xl font-bold text-slate-900 tracking-tight">Dashboard</h1>
-        <p className="text-sm text-slate-500 mt-0.5">Resumen de hoy</p>
+        <h1 className="text-xl font-bold text-slate-900 dark:text-slate-100 tracking-tight">Dashboard</h1>
+        <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">Resumen de hoy</p>
       </div>
 
       {/* Stat cards */}
@@ -66,7 +66,7 @@ export default function Dashboard() {
       {/* Low stock */}
       {isLoading ? null : lowStock.length > 0 && (
         <section>
-          <h2 className="text-sm font-semibold text-slate-700 mb-3 flex items-center gap-1.5">
+          <h2 className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-3 flex items-center gap-1.5">
             <AlertTriangle size={14} className="text-yellow-500" aria-hidden="true" />
             Stock bajo
           </h2>
@@ -79,7 +79,7 @@ export default function Dashboard() {
       {/* Expiring soon */}
       {isLoading ? null : expiringSoon.length > 0 && (
         <section>
-          <h2 className="text-sm font-semibold text-slate-700 mb-3 flex items-center gap-2">
+          <h2 className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-3 flex items-center gap-2">
             <AlertTriangle size={14} className="text-red-500" aria-hidden="true" />
             Próximos a vencer
           </h2>
@@ -106,16 +106,16 @@ interface StatCardProps {
 }
 
 const colorMap: Record<StatCardProps['color'], { icon: string; accent: string }> = {
-  green:  { icon: 'bg-health-100 dark:bg-health-900/30 text-health-600 dark:text-health-400', accent: '' },
-  red:    { icon: 'bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400',             accent: 'border-red-100 dark:border-red-900/50' },
-  yellow: { icon: 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400', accent: 'border-yellow-100 dark:border-yellow-900/50' },
-  gray:   { icon: 'bg-slate-100 dark:bg-slate-700 text-slate-400 dark:text-slate-500',        accent: '' },
+  green:  { icon: 'bg-health-100 dark:bg-health-900/40 text-health-600 dark:text-health-400', accent: '' },
+  red:    { icon: 'bg-red-100 dark:bg-red-900/40 text-red-600 dark:text-red-400',             accent: 'border-red-100 dark:border-red-900/60' },
+  yellow: { icon: 'bg-yellow-100 dark:bg-yellow-900/40 text-yellow-600 dark:text-yellow-400', accent: 'border-yellow-100 dark:border-yellow-900/60' },
+  gray:   { icon: 'bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500',        accent: '' },
 }
 
 function StatCard({ icon: Icon, label, value, color }: StatCardProps) {
   const { icon: iconClass, accent } = colorMap[color]
   return (
-    <div className={`bg-white dark:bg-slate-800 rounded-2xl border shadow-sm p-3.5 flex flex-col gap-2.5 ${accent || 'border-slate-100 dark:border-slate-700'}`}>
+    <div className={`bg-white dark:bg-slate-900 rounded-2xl border shadow-sm p-3.5 flex flex-col gap-2.5 ${accent || 'border-slate-100 dark:border-slate-800'}`}>
       <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${iconClass}`}>
         <Icon size={17} aria-hidden="true" />
       </div>

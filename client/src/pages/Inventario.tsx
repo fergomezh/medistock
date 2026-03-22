@@ -65,7 +65,7 @@ export default function Inventario() {
           placeholder="Buscar medicamento..."
           value={search}
           onChange={e => setSearch(e.target.value)}
-          className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-slate-200 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-health-400 text-sm bg-white"
+          className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-slate-200 dark:bg-slate-900 dark:border-slate-800 dark:text-slate-100 dark:placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-health-400 text-sm bg-white"
           aria-label="Buscar medicamento"
         />
       </div>

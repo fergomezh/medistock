@@ -37,7 +37,29 @@
       "Bash(git config:*)",
       "Bash(gh repo:*)",
       "Bash(git init:*)",
-      "Bash(git remote:*)"
+      "Bash(git remote:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "mcp__plugin_supabase_supabase__get_project",
+      "Read(//c/Users/fergo/.claude/plugins/cache/ui-ux-pro-max-skill/ui-ux-pro-max/2.0.1/.claude/skills/ui-ux-pro-max/**)",
+      "Bash(python scripts/search.py \"medicine tracker health monitoring web app\" --design-system -p \"MediStock\" -f markdown)",
+      "Bash(python scripts/search.py \"medicine health tracker web app\" --design-system -p \"MediStock\" -f markdown)",
+      "Bash(echo \"EXIT:$?\")",
+      "Bash(sed -i 's/focus:ring-health-400 text-sm bg-white\"\"/focus:ring-health-400 text-sm bg-white dark:bg-slate-700 dark:border-slate-600 dark:text-slate-100\"\"/g' components/MedicationForm.tsx)",
+      "Bash(sed -i 's/text-slate-700 mb-1\\\\.5\"\"/text-slate-700 dark:text-slate-300 mb-1.5\"\"/g' components/MedicationForm.tsx pages/Configuracion.tsx pages/Login.tsx pages/Register.tsx pages/ResetPassword.tsx)",
+      "Bash(sed -i 's/bg-white rounded-2xl border border-slate-100 shadow-sm p-6/bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm p-6/g' pages/Configuracion.tsx)",
+      "Bash(sed -i 's/text-slate-700 mb-3\"\"/text-slate-700 dark:text-slate-300 mb-3\"\"/g' pages/Configuracion.tsx)",
+      "Bash(sed -i 's/text-slate-700\"\"\\\\n/text-slate-700 dark:text-slate-300\"\"\\\\n/g' pages/Configuracion.tsx)",
+      "Bash(sed -i 's/pl-9 pr-4 py-2\\\\.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-health-400 text-sm bg-white\"\"/pl-9 pr-4 py-2.5 rounded-xl border border-slate-200 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-health-400 text-sm bg-white\"\"/g' Inventario.tsx)",
+      "Bash(sed -i 's/filter === f\\\\n.*? ''''bg-health-500 text-white''''/filter === f\\\\n            ? ''''bg-health-500 text-white''''/g' Inventario.tsx)",
+      "Bash(sed -i 's/text-slate-700 mb-3\"\">Horarios/text-slate-700 dark:text-slate-300 mb-3\"\">Horarios/g' components/MedicationForm.tsx)",
+      "Bash(sed -i 's/text-slate-700 mb-1\\\\.5\"\">Stock/text-slate-700 dark:text-slate-300 mb-1.5\"\">Stock/g' components/MedicationForm.tsx)",
+      "Bash(sed -i 's/className=\"\"block text-sm font-medium text-slate-700 mb-1\\\\.5\"\">$/className=\"\"block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5\"\">/g' components/MedicationForm.tsx)",
+      "Bash(python3 \"C:\\\\Users\\\\fergo\\\\.claude\\\\plugins\\\\cache\\\\ui-ux-pro-max-skill\\\\ui-ux-pro-max\\\\2.0.1\\\\.claude\\\\skills\\\\ui-ux-pro-max\\\\scripts\\\\search.py\" \"healthcare dark mode\" --design-system -p \"MediStock\" -f markdown)",
+      "Bash(where python3:*)",
+      "Bash(where python:*)",
+      "Read(//c/Users/fergo/AppData/Local/Programs/Python//**)",
+      "Bash(\"/c/Python314/python.exe\" \"C:\\\\Users\\\\fergo\\\\.claude\\\\plugins\\\\cache\\\\ui-ux-pro-max-skill\\\\ui-ux-pro-max\\\\2.0.1\\\\.claude\\\\skills\\\\ui-ux-pro-max\\\\scripts\\\\search.py\" \"healthcare medicine dark mode\" --domain style -n 3)"
     ]
   }
 }
