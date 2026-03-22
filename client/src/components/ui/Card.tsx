@@ -10,7 +10,7 @@ export default function Card({ children, className = '', onClick }: CardProps) {
   return (
     <div
       onClick={onClick}
-      className={`bg-white rounded-2xl border border-slate-100 shadow-sm ${onClick ? 'cursor-pointer hover:shadow-md hover:border-slate-200 transition-all' : ''} ${className}`}
+      className={`bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm ${onClick ? 'cursor-pointer hover:shadow-md hover:border-slate-200 dark:hover:border-slate-600 transition-all' : ''} ${className}`}
     >
       {children}
     </div>

@@ -102,7 +102,7 @@ export default function MedicationForm({ open, onClose, medication, triggerRef }
         )}
 
         <div>
-          <label htmlFor="med-name" className="block text-sm font-medium text-slate-700 mb-1.5">
+          <label htmlFor="med-name" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
             Nombre <span aria-hidden="true">*</span>
           </label>
           <input
@@ -112,35 +112,35 @@ export default function MedicationForm({ open, onClose, medication, triggerRef }
             aria-required="true"
             value={form.name}
             onChange={e => setField('name', e.target.value)}
-            className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-health-400 text-sm"
+            className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-100 dark:placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-health-400 text-sm"
             placeholder="Ej: Ibuprofeno 400mg"
           />
         </div>
 
         <div>
-          <label htmlFor="med-description" className="block text-sm font-medium text-slate-700 mb-1.5">Descripción</label>
+          <label htmlFor="med-description" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Descripción</label>
           <input id="med-description" type="text" value={form.description ?? ''} onChange={e => setField('description', e.target.value)}
-            className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-health-400 text-sm"
+            className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-100 dark:placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-health-400 text-sm"
             placeholder="Opcional" />
         </div>
 
         <div className="grid grid-cols-3 gap-3">
           <div>
-            <label htmlFor="med-qty-current" className="block text-sm font-medium text-slate-700 mb-1.5">Stock actual</label>
+            <label htmlFor="med-qty-current" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Stock actual</label>
             <input id="med-qty-current" type="number" min="0" value={form.quantity_current}
               onChange={e => setField('quantity_current', Number(e.target.value))}
-              className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-health-400 text-sm" />
+              className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-100 dark:placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-health-400 text-sm" />
           </div>
           <div>
-            <label htmlFor="med-qty-min" className="block text-sm font-medium text-slate-700 mb-1.5">Stock mínimo</label>
+            <label htmlFor="med-qty-min" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Stock mínimo</label>
             <input id="med-qty-min" type="number" min="0" value={form.quantity_minimum}
               onChange={e => setField('quantity_minimum', Number(e.target.value))}
-              className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-health-400 text-sm" />
+              className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-100 dark:placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-health-400 text-sm" />
           </div>
           <div>
-            <label htmlFor="med-qty-unit" className="block text-sm font-medium text-slate-700 mb-1.5">Unidad</label>
+            <label htmlFor="med-qty-unit" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Unidad</label>
             <select id="med-qty-unit" value={form.quantity_unit} onChange={e => setField('quantity_unit', e.target.value)}
-              className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-health-400 text-sm bg-white">
+              className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-health-400 text-sm bg-white dark:bg-slate-700 dark:border-slate-600 dark:text-slate-100">
               {UNIT_OPTIONS.map(u => <option key={u} value={u}>{u}</option>)}
             </select>
           </div>
@@ -148,22 +148,22 @@ export default function MedicationForm({ open, onClose, medication, triggerRef }
 
         <div className="grid grid-cols-2 gap-3">
           <div>
-            <label htmlFor="med-dose-amount" className="block text-sm font-medium text-slate-700 mb-1.5">Dosis por toma</label>
+            <label htmlFor="med-dose-amount" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Dosis por toma</label>
             <input id="med-dose-amount" type="number" min="0.1" step="0.1" value={form.dose_amount}
               onChange={e => setField('dose_amount', Number(e.target.value))}
-              className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-health-400 text-sm" />
+              className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-100 dark:placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-health-400 text-sm" />
           </div>
           <div>
-            <label htmlFor="med-dose-freq" className="block text-sm font-medium text-slate-700 mb-1.5">Frecuencia</label>
+            <label htmlFor="med-dose-freq" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Frecuencia</label>
             <input id="med-dose-freq" type="text" value={form.dose_frequency ?? ''} onChange={e => setField('dose_frequency', e.target.value)}
-              className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-health-400 text-sm"
+              className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-100 dark:placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-health-400 text-sm"
               placeholder="Ej: diaria, cada 8 horas" />
           </div>
         </div>
 
         <div>
           <div className="flex items-center justify-between mb-1.5">
-            <span className="block text-sm font-medium text-slate-700">Horarios de toma</span>
+            <span className="block text-sm font-medium text-slate-700 dark:text-slate-300">Horarios de toma</span>
             <button type="button" onClick={addDoseTime}
               className="text-xs text-health-600 hover:text-health-700 flex items-center gap-1 font-medium">
               <Plus size={13} aria-hidden="true" /> Agregar
@@ -174,7 +174,7 @@ export default function MedicationForm({ open, onClose, medication, triggerRef }
               <div key={i} className="flex items-center gap-2">
                 <label htmlFor={`med-dose-time-${i}`} className="sr-only">Horario {i + 1}</label>
                 <input id={`med-dose-time-${i}`} type="time" value={t} onChange={e => updateDoseTime(i, e.target.value)}
-                  className="flex-1 px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-health-400 text-sm" />
+                  className="flex-1 px-4 py-2.5 rounded-xl border border-slate-200 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-100 dark:placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-health-400 text-sm" />
                 {form.dose_times.length > 1 && (
                   <button type="button" onClick={() => removeDoseTime(i)}
                     aria-label={`Eliminar horario ${i + 1}`}
@@ -189,16 +189,16 @@ export default function MedicationForm({ open, onClose, medication, triggerRef }
 
         <div className="grid grid-cols-2 gap-3">
           <div>
-            <label htmlFor="med-expiration" className="block text-sm font-medium text-slate-700 mb-1.5">Fecha de vencimiento</label>
+            <label htmlFor="med-expiration" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Fecha de vencimiento</label>
             <input id="med-expiration" type="date" value={form.expiration_date ?? ''}
               onChange={e => setField('expiration_date', e.target.value || null)}
-              className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-health-400 text-sm" />
+              className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-100 dark:placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-health-400 text-sm" />
           </div>
           <div>
-            <label htmlFor="med-purchase" className="block text-sm font-medium text-slate-700 mb-1.5">Fecha de compra</label>
+            <label htmlFor="med-purchase" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">Fecha de compra</label>
             <input id="med-purchase" type="date" value={form.purchase_date ?? ''}
               onChange={e => setField('purchase_date', e.target.value || null)}
-              className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-health-400 text-sm" />
+              className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-100 dark:placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-health-400 text-sm" />
           </div>
         </div>
 

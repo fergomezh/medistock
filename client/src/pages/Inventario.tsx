@@ -42,7 +42,7 @@ export default function Inventario() {
             onClick={() => exportInventoryPDF(medications.filter(m => m.active))}
             title="Exportar PDF"
             aria-label="Exportar PDF"
-            className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 transition-colors px-2"
+            className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-400 transition-colors px-2"
           >
             <FileText size={16} aria-hidden="true" />
           </button>
@@ -50,7 +50,7 @@ export default function Inventario() {
             onClick={() => exportInventoryExcel(medications.filter(m => m.active))}
             title="Exportar Excel"
             aria-label="Exportar Excel"
-            className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 transition-colors px-2"
+            className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-400 transition-colors px-2"
           >
             <FileSpreadsheet size={16} aria-hidden="true" />
           </button>
@@ -65,7 +65,7 @@ export default function Inventario() {
           placeholder="Buscar medicamento..."
           value={search}
           onChange={e => setSearch(e.target.value)}
-          className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-health-400 text-sm bg-white"
+          className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-slate-200 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-health-400 text-sm bg-white"
           aria-label="Buscar medicamento"
         />
       </div>
@@ -80,7 +80,7 @@ export default function Inventario() {
             className={`shrink-0 px-3 min-h-[44px] rounded-full text-xs font-medium transition-colors ${
               filter === f
                 ? 'bg-health-500 text-white'
-                : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'
+                : 'bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700'
             }`}
           >
             {FILTER_LABELS[f]}

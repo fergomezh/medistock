@@ -40,10 +40,10 @@ export default function DoseTracker({ scheduledDose }: DoseTrackerProps) {
 
   return (
     <div className={`flex items-center gap-3 p-3 rounded-xl transition-colors ${
-      isTaken   ? 'bg-health-50 border border-health-100'
-      : isMissed  ? 'bg-red-50 border border-red-100'
-      : isSkipped ? 'bg-slate-50 border border-slate-100'
-      : 'bg-white border border-slate-100 hover:border-slate-200'
+      isTaken   ? 'bg-health-50 dark:bg-health-900/20 border border-health-100 dark:border-health-800'
+      : isMissed  ? 'bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-800'
+      : isSkipped ? 'bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700'
+      : 'bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:border-slate-200 dark:hover:border-slate-600'
     }`}>
       {/* Status icon */}
       <div className="shrink-0" aria-hidden="true">
@@ -55,8 +55,8 @@ export default function DoseTracker({ scheduledDose }: DoseTrackerProps) {
 
       {/* Info */}
       <div className="flex-1 min-w-0">
-        <p className="text-sm font-medium text-slate-900 truncate">{medication.name}</p>
-        <p className="text-xs text-slate-500">
+        <p className="text-sm font-medium text-slate-900 dark:text-slate-100 truncate">{medication.name}</p>
+        <p className="text-xs text-slate-500 dark:text-slate-400">
           {formatDoseTime(scheduledTime)} · {medication.dose_amount} {medication.quantity_unit}
         </p>
       </div>

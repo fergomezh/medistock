@@ -47,13 +47,13 @@ export default function Dashboard() {
 
       {/* Today's doses */}
       <section>
-        <h2 className="text-sm font-semibold text-slate-700 mb-3">Dosis de hoy</h2>
+        <h2 className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-3">Dosis de hoy</h2>
         {isLoading ? (
           <div className="space-y-2">
             {Array.from({ length: 3 }).map((_, i) => <SkeletonDoseRow key={i} />)}
           </div>
         ) : schedule.length === 0 ? (
-          <p className="text-sm text-slate-500 text-center py-8">No hay dosis programadas para hoy.</p>
+          <p className="text-sm text-slate-500 dark:text-slate-400 text-center py-8">No hay dosis programadas para hoy.</p>
         ) : (
           <div className="space-y-2">
             {schedule.map((dose, i) => (
@@ -106,22 +106,22 @@ interface StatCardProps {
 }
 
 const colorMap: Record<StatCardProps['color'], { icon: string; accent: string }> = {
-  green:  { icon: 'bg-health-100 text-health-600', accent: '' },
-  red:    { icon: 'bg-red-100 text-red-600',        accent: 'border-red-100' },
-  yellow: { icon: 'bg-yellow-100 text-yellow-600',  accent: 'border-yellow-100' },
-  gray:   { icon: 'bg-slate-100 text-slate-400',    accent: '' },
+  green:  { icon: 'bg-health-100 dark:bg-health-900/30 text-health-600 dark:text-health-400', accent: '' },
+  red:    { icon: 'bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400',             accent: 'border-red-100 dark:border-red-900/50' },
+  yellow: { icon: 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400', accent: 'border-yellow-100 dark:border-yellow-900/50' },
+  gray:   { icon: 'bg-slate-100 dark:bg-slate-700 text-slate-400 dark:text-slate-500',        accent: '' },
 }
 
 function StatCard({ icon: Icon, label, value, color }: StatCardProps) {
   const { icon: iconClass, accent } = colorMap[color]
   return (
-    <div className={`bg-white rounded-2xl border shadow-sm p-3.5 flex flex-col gap-2.5 ${accent || 'border-slate-100'}`}>
+    <div className={`bg-white dark:bg-slate-800 rounded-2xl border shadow-sm p-3.5 flex flex-col gap-2.5 ${accent || 'border-slate-100 dark:border-slate-700'}`}>
       <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${iconClass}`}>
         <Icon size={17} aria-hidden="true" />
       </div>
       <div>
-        <p className="text-2xl font-bold text-slate-900 tabular-nums leading-none">{value}</p>
-        <p className="text-[11px] text-slate-500 mt-0.5 leading-tight">{label}</p>
+        <p className="text-2xl font-bold text-slate-900 dark:text-slate-100 tabular-nums leading-none">{value}</p>
+        <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 leading-tight">{label}</p>
       </div>
     </div>
   )

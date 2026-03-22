@@ -30,7 +30,7 @@ export default function PasswordInput({
         placeholder={placeholder}
         autoComplete={autoComplete}
         required={required}
-        className="w-full px-4 py-2.5 pr-11 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-health-400 text-sm"
+        className="w-full px-4 py-2.5 pr-11 rounded-xl border border-slate-200 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-100 dark:placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-health-400 text-sm"
       />
       <button
         type="button"

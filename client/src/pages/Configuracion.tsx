@@ -55,8 +55,8 @@ export default function Configuracion() {
       <h1 className="text-xl font-bold text-slate-900 tracking-tight">Configuración</h1>
 
       {/* Profile form */}
-      <form onSubmit={handleSubmit} className="bg-white rounded-2xl border border-slate-100 shadow-sm p-6 space-y-4">
-        <h2 className="text-sm font-semibold text-slate-700">Perfil</h2>
+      <form onSubmit={handleSubmit} className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm p-6 space-y-4">
+        <h2 className="text-sm font-semibold text-slate-700 dark:text-slate-300">Perfil</h2>
 
         {success && (
           <div className="bg-health-50 text-health-700 text-sm px-4 py-3 rounded-xl border border-health-200">
@@ -70,7 +70,7 @@ export default function Configuracion() {
         )}
 
         <div>
-          <label htmlFor="cfg-name" className="block text-sm font-medium text-slate-700 mb-1.5">
+          <label htmlFor="cfg-name" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
             Nombre
           </label>
           <input
@@ -78,12 +78,12 @@ export default function Configuracion() {
             type="text"
             value={name}
             onChange={e => setName(e.target.value)}
-            className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-health-400 text-sm"
+            className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-100 dark:placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-health-400 text-sm"
           />
         </div>
 
         <div>
-          <label htmlFor="cfg-email" className="block text-sm font-medium text-slate-700 mb-1.5">
+          <label htmlFor="cfg-email" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
             Email (cuenta)
           </label>
           <input
@@ -91,12 +91,12 @@ export default function Configuracion() {
             type="email"
             value={user?.email ?? ''}
             disabled
-            className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-400 cursor-not-allowed"
+            className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700/50 text-sm text-slate-400 dark:text-slate-500 cursor-not-allowed"
           />
         </div>
 
         <div>
-          <label htmlFor="cfg-notif-email" className="block text-sm font-medium text-slate-700 mb-1.5">
+          <label htmlFor="cfg-notif-email" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
             Email para notificaciones
           </label>
           <input
@@ -105,7 +105,7 @@ export default function Configuracion() {
             value={notifEmail}
             onChange={e => setNotifEmail(e.target.value)}
             placeholder={user?.email ?? ''}
-            className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-health-400 text-sm"
+            className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-100 dark:placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-health-400 text-sm"
           />
           <p className="text-xs text-slate-400 mt-1">
             Si está vacío, se usará el email de la cuenta.
@@ -113,7 +113,7 @@ export default function Configuracion() {
         </div>
 
         <div>
-          <label htmlFor="cfg-margin" className="block text-sm font-medium text-slate-700 mb-1.5">
+          <label htmlFor="cfg-margin" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
             Días de margen para recompra
           </label>
           <input
@@ -123,7 +123,7 @@ export default function Configuracion() {
             max="30"
             value={marginDays}
             onChange={e => setMarginDays(Number(e.target.value))}
-            className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-health-400 text-sm"
+            className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-100 dark:placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-health-400 text-sm"
           />
         </div>
 
@@ -135,7 +135,7 @@ export default function Configuracion() {
             onChange={e => setDailySummary(e.target.checked)}
             className="w-4 h-4 rounded text-health-500 border-slate-300 focus:ring-health-400"
           />
-          <label htmlFor="cfg-summary" className="text-sm text-slate-700">
+          <label htmlFor="cfg-summary" className="text-sm text-slate-700 dark:text-slate-300">
             Recibir resumen diario por email
           </label>
         </div>
@@ -146,8 +146,8 @@ export default function Configuracion() {
       </form>
 
       {/* Password change */}
-      <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-6">
-        <h2 className="text-sm font-semibold text-slate-700 mb-3">Seguridad</h2>
+      <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm p-6">
+        <h2 className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-3">Seguridad</h2>
         {pwSent ? (
           <p className="text-sm text-health-600">
             Email de restablecimiento enviado. Revisá tu bandeja de entrada.

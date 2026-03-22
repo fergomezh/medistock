@@ -24,9 +24,9 @@ export default function MedicationCard({ medication, marginDays = 5 }: Medicatio
             <Pill size={18} className="text-health-600" />
           </div>
           <div className="min-w-0">
-            <h3 className="font-semibold text-slate-900 text-sm truncate">{medication.name}</h3>
+            <h3 className="font-semibold text-slate-900 dark:text-slate-100 text-sm truncate">{medication.name}</h3>
             {medication.description && (
-              <p className="text-xs text-slate-500 truncate mt-0.5">{medication.description}</p>
+              <p className="text-xs text-slate-500 dark:text-slate-400 truncate mt-0.5">{medication.description}</p>
             )}
           </div>
         </div>
@@ -44,10 +44,10 @@ export default function MedicationCard({ medication, marginDays = 5 }: Medicatio
       </div>
 
       {/* Footer */}
-      <div className="flex items-center justify-between mt-3 pt-3 border-t border-slate-50">
+      <div className="flex items-center justify-between mt-3 pt-3 border-t border-slate-50 dark:border-slate-700">
         <RestockDateChip medication={medication} marginDays={marginDays} />
         {nextDoseTime && (
-          <span className="text-xs text-slate-500">
+          <span className="text-xs text-slate-500 dark:text-slate-400">
             Próxima: {formatDoseTime(nextDoseTime)}
           </span>
         )}

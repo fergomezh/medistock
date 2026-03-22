@@ -52,16 +52,16 @@ export default function Notificaciones() {
             return (
               <div
                 key={alert.id}
-                className={`bg-white rounded-2xl border shadow-sm p-4 flex items-start gap-3 transition-opacity ${
-                  alert.is_read ? 'border-slate-100 opacity-60' : 'border-health-100'
+                className={`bg-white dark:bg-slate-800 rounded-2xl border shadow-sm p-4 flex items-start gap-3 transition-opacity ${
+                  alert.is_read ? 'border-slate-100 dark:border-slate-700 opacity-60' : 'border-health-100 dark:border-health-800'
                 }`}
               >
-                <div className={`w-9 h-9 rounded-xl bg-slate-50 flex items-center justify-center shrink-0 ${color}`}>
+                <div className={`w-9 h-9 rounded-xl bg-slate-50 dark:bg-slate-700 flex items-center justify-center shrink-0 ${color}`}>
                   <Icon size={16} aria-hidden="true" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm text-slate-900">{alert.message}</p>
-                  <p className="text-xs text-slate-500 mt-0.5">{formatDate(alert.triggered_at)}</p>
+                  <p className="text-sm text-slate-900 dark:text-slate-100">{alert.message}</p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{formatDate(alert.triggered_at)}</p>
                   {/* Read state as text, not opacity-only — satisfies color-not-only */}
                   {alert.is_read && (
                     <span className="inline-flex items-center gap-1 mt-1 text-xs text-slate-400">

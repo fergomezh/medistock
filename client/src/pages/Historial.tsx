@@ -48,7 +48,7 @@ export default function Historial() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm p-4 grid grid-cols-2 md:grid-cols-4 gap-3">
         <div>
           <label htmlFor="hist-med" className="block text-xs font-medium text-slate-500 mb-1">
             Medicamento
@@ -57,21 +57,21 @@ export default function Historial() {
             id="hist-med"
             value={medFilter}
             onChange={e => setMedFilter(e.target.value)}
-            className="w-full px-3 py-2 rounded-xl border border-slate-200 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-health-400"
+            className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-600 text-sm bg-white dark:bg-slate-700 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-health-400"
           >
             <option value="all">Todos</option>
             {medications.map(m => <option key={m.id} value={m.id}>{m.name}</option>)}
           </select>
         </div>
         <div>
-          <label htmlFor="hist-status" className="block text-xs font-medium text-slate-500 mb-1">
+          <label htmlFor="hist-status" className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">
             Estado
           </label>
           <select
             id="hist-status"
             value={statusFilter}
             onChange={e => setStatusFilter(e.target.value as StatusFilter)}
-            className="w-full px-3 py-2 rounded-xl border border-slate-200 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-health-400"
+            className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-600 text-sm bg-white dark:bg-slate-700 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-health-400"
           >
             <option value="all">Todos</option>
             <option value="taken">Tomada</option>
@@ -80,7 +80,7 @@ export default function Historial() {
           </select>
         </div>
         <div>
-          <label htmlFor="hist-from" className="block text-xs font-medium text-slate-500 mb-1">
+          <label htmlFor="hist-from" className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">
             Desde
           </label>
           <input
@@ -88,11 +88,11 @@ export default function Historial() {
             type="date"
             value={dateFrom}
             onChange={e => setDateFrom(e.target.value)}
-            className="w-full px-3 py-2 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-health-400"
+            className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-100 text-sm focus:outline-none focus:ring-2 focus:ring-health-400"
           />
         </div>
         <div>
-          <label htmlFor="hist-to" className="block text-xs font-medium text-slate-500 mb-1">
+          <label htmlFor="hist-to" className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">
             Hasta
           </label>
           <input
@@ -100,7 +100,7 @@ export default function Historial() {
             type="date"
             value={dateTo}
             onChange={e => setDateTo(e.target.value)}
-            className="w-full px-3 py-2 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-health-400"
+            className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-100 text-sm focus:outline-none focus:ring-2 focus:ring-health-400"
           />
         </div>
       </div>
@@ -111,10 +111,10 @@ export default function Historial() {
       ) : filtered.length === 0 ? (
         <p className="text-sm text-slate-400 text-center py-12">Sin registros.</p>
       ) : (
-        <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-x-auto">
+        <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-slate-100 text-xs font-semibold text-slate-400 uppercase tracking-wider">
+              <tr className="border-b border-slate-100 dark:border-slate-700 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">
                 <th className="text-left px-4 py-3">Medicamento</th>
                 <th className="text-left px-4 py-3">Fecha</th>
                 <th className="text-left px-4 py-3">Programada</th>
@@ -122,13 +122,13 @@ export default function Historial() {
                 <th className="text-left px-4 py-3">Estado</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-50">
+            <tbody className="divide-y divide-slate-50 dark:divide-slate-700">
               {filtered.map(log => (
                 <tr key={log.id}>
-                  <td className="px-4 py-3 font-medium text-slate-900">{(log as any).medication?.name ?? ''}</td>
-                  <td className="px-4 py-3 text-slate-700">{formatDate(log.scheduled_at)}</td>
-                  <td className="px-4 py-3 text-slate-500">{formatDoseTime(log.scheduled_at.slice(11, 16))}</td>
-                  <td className="px-4 py-3 text-slate-500">
+                  <td className="px-4 py-3 font-medium text-slate-900 dark:text-slate-100">{(log as any).medication?.name ?? ''}</td>
+                  <td className="px-4 py-3 text-slate-700 dark:text-slate-300">{formatDate(log.scheduled_at)}</td>
+                  <td className="px-4 py-3 text-slate-500 dark:text-slate-400">{formatDoseTime(log.scheduled_at.slice(11, 16))}</td>
+                  <td className="px-4 py-3 text-slate-500 dark:text-slate-400">
                     {log.taken_at ? formatDoseTime(log.taken_at.slice(11, 16)) : '—'}
                   </td>
                   <td className={`px-4 py-3 font-medium ${STATUS_COLOR[log.status] ?? ''}`}>
