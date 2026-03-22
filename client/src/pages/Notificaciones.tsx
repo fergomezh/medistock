@@ -28,7 +28,7 @@ export default function Notificaciones() {
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h1 className="text-xl font-bold text-slate-900">Notificaciones</h1>
+        <h1 className="text-xl font-bold text-slate-900 tracking-tight">Notificaciones</h1>
         {unread.length > 0 && (
           <Button size="sm" variant="secondary" onClick={() => markAll.mutate()} loading={markAll.isPending}>
             Marcar todas como leídas

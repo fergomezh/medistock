@@ -52,7 +52,7 @@ export default function Configuracion() {
 
   return (
     <div className="max-w-lg mx-auto space-y-6">
-      <h1 className="text-xl font-bold text-slate-900">Configuración</h1>
+      <h1 className="text-xl font-bold text-slate-900 tracking-tight">Configuración</h1>
 
       {/* Profile form */}
       <form onSubmit={handleSubmit} className="bg-white rounded-2xl border border-slate-100 shadow-sm p-6 space-y-4">

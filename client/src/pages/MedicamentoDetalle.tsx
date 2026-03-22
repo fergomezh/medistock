@@ -51,7 +51,7 @@ export default function MedicamentoDetalle() {
       <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-6">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <h1 className="text-xl font-bold text-slate-900">{medication.name}</h1>
+            <h1 className="text-xl font-bold text-slate-900 tracking-tight">{medication.name}</h1>
             {medication.description && (
               <p className="text-sm text-slate-500 mt-1">{medication.description}</p>
             )}

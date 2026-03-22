@@ -34,7 +34,7 @@ export default function Dashboard() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-xl font-bold text-slate-900">Dashboard</h1>
+        <h1 className="text-xl font-bold text-slate-900 tracking-tight">Dashboard</h1>
         <p className="text-sm text-slate-500 mt-0.5">Resumen de hoy</p>
       </div>
 
@@ -42,7 +42,7 @@ export default function Dashboard() {
       <div className="grid grid-cols-3 gap-3">
         <StatCard icon={Pill}  label="Medicamentos"    value={medications.length} color="green" />
         <StatCard icon={Bell}  label="Alertas"         value={unreadCount}        color={unreadCount > 0 ? 'red' : 'gray'} />
-        <StatCard icon={Clock} label="Dosis pendientes" value={pendingDoses.length} color={pendingDoses.length > 0 ? 'yellow' : 'gray'} />
+        <StatCard icon={Clock} label="Pendientes"      value={pendingDoses.length} color={pendingDoses.length > 0 ? 'yellow' : 'gray'} />
       </div>
 
       {/* Today's doses */}
@@ -66,7 +66,7 @@ export default function Dashboard() {
       {/* Low stock */}
       {isLoading ? null : lowStock.length > 0 && (
         <section>
-          <h2 className="text-sm font-semibold text-slate-700 mb-3 flex items-center gap-2">
+          <h2 className="text-sm font-semibold text-slate-700 mb-3 flex items-center gap-1.5">
             <AlertTriangle size={14} className="text-yellow-500" aria-hidden="true" />
             Stock bajo
           </h2>
@@ -105,22 +105,23 @@ interface StatCardProps {
   color: 'green' | 'red' | 'yellow' | 'gray'
 }
 
-const colorMap: Record<StatCardProps['color'], string> = {
-  green:  'bg-health-50 text-health-600',
-  red:    'bg-red-50 text-red-600',
-  yellow: 'bg-yellow-50 text-yellow-600',
-  gray:   'bg-slate-50 text-slate-500',
+const colorMap: Record<StatCardProps['color'], { icon: string; accent: string }> = {
+  green:  { icon: 'bg-health-100 text-health-600', accent: '' },
+  red:    { icon: 'bg-red-100 text-red-600',        accent: 'border-red-100' },
+  yellow: { icon: 'bg-yellow-100 text-yellow-600',  accent: 'border-yellow-100' },
+  gray:   { icon: 'bg-slate-100 text-slate-400',    accent: '' },
 }
 
 function StatCard({ icon: Icon, label, value, color }: StatCardProps) {
+  const { icon: iconClass, accent } = colorMap[color]
   return (
-    <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 flex flex-col gap-2">
-      <div className={`w-8 h-8 rounded-xl flex items-center justify-center ${colorMap[color]}`}>
-        <Icon size={16} aria-hidden="true" />
+    <div className={`bg-white rounded-2xl border shadow-sm p-3.5 flex flex-col gap-2.5 ${accent || 'border-slate-100'}`}>
+      <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${iconClass}`}>
+        <Icon size={17} aria-hidden="true" />
       </div>
       <div>
-        <p className="text-2xl font-bold text-slate-900">{value}</p>
-        <p className="text-xs text-slate-500">{label}</p>
+        <p className="text-2xl font-bold text-slate-900 tabular-nums leading-none">{value}</p>
+        <p className="text-[11px] text-slate-500 mt-0.5 leading-tight">{label}</p>
       </div>
     </div>
   )

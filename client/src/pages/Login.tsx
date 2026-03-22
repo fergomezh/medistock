@@ -24,16 +24,16 @@ export default function Login() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-health-50 to-slate-100 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-health-50 via-white to-slate-100 px-4">
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-14 h-14 bg-health-500 rounded-2xl mb-3 shadow-lg shadow-health-200">
+          <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br from-health-400 to-health-600 rounded-2xl mb-4 shadow-lg shadow-health-200/60">
             <Pill size={26} className="text-white" aria-hidden="true" />
           </div>
-          <h1 className="text-2xl font-bold text-slate-900">MediStock</h1>
+          <h1 className="text-2xl font-bold text-slate-900 tracking-tight">MediStock</h1>
           <p className="text-slate-500 text-sm mt-1">Iniciá sesión en tu cuenta</p>
         </div>
-        <form onSubmit={handleSubmit} className="bg-white rounded-3xl shadow-sm border border-slate-100 p-6 space-y-4">
+        <form onSubmit={handleSubmit} className="bg-white rounded-3xl shadow-md shadow-slate-100 border border-slate-100 p-6 space-y-4">
           {error && (
             <div role="alert" className="bg-red-50 text-red-700 text-sm px-4 py-3 rounded-xl border border-red-100">{error}</div>
           )}

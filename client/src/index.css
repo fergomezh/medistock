@@ -13,12 +13,26 @@
   --color-health-900: #14532d;
   --radius-2xl: 1rem;
   --radius-3xl: 1.5rem;
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 @layer base {
   body {
     @apply bg-slate-50 text-slate-900 antialiased;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
   }
+
+  /* Smooth focus rings for interactive elements */
+  :focus-visible {
+    @apply outline-none ring-2 ring-health-400 ring-offset-1;
+  }
+
+  /* Subtle scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { @apply bg-transparent; }
+  ::-webkit-scrollbar-thumb { @apply bg-slate-200 rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-slate-300; }
 }
 
 @media (prefers-reduced-motion: reduce) {

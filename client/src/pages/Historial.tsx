@@ -36,7 +36,7 @@ export default function Historial() {
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h1 className="text-xl font-bold text-slate-900">Historial de tomas</h1>
+        <h1 className="text-xl font-bold text-slate-900 tracking-tight">Historial de tomas</h1>
         <button
           onClick={() => exportHistorialExcel(medications, logs as DoseLogWithMedication[])}
           title="Exportar Excel"

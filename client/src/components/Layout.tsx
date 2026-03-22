@@ -33,28 +33,28 @@ export default function Layout({ children }: LayoutProps) {
       </a>
 
       {/* Navbar */}
-      <header className="sticky top-0 z-30 bg-white/80 backdrop-blur border-b border-slate-100">
+      <header className="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-[0_1px_3px_0_rgb(0,0,0,0.04)]">
         <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between gap-4">
 
           {/* Logo */}
           <NavLink to="/dashboard" className="flex items-center gap-2 shrink-0">
-            <div className="w-7 h-7 bg-health-500 rounded-lg flex items-center justify-center shadow-sm shadow-health-200">
-              <Pill size={15} className="text-white" aria-hidden="true" />
+            <div className="w-8 h-8 bg-gradient-to-br from-health-400 to-health-600 rounded-xl flex items-center justify-center shadow-sm shadow-health-200">
+              <Pill size={16} className="text-white" aria-hidden="true" />
             </div>
-            <span className="font-bold text-slate-900 text-sm hidden sm:block">MediStock</span>
+            <span className="font-bold text-slate-900 text-sm hidden sm:block tracking-tight">MediStock</span>
           </NavLink>
 
           {/* Nav links — hidden on mobile */}
-          <nav className="hidden md:flex items-center gap-1" aria-label="Navegación principal">
+          <nav className="hidden md:flex items-center gap-0.5" aria-label="Navegación principal">
             {navLinks.map(({ to, label, icon: Icon }) => (
               <NavLink
                 key={to}
                 to={to}
                 className={({ isActive }) =>
-                  `flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+                  `flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-150 ${
                     isActive
-                      ? 'bg-health-50 text-health-700'
-                      : 'text-slate-500 hover:text-slate-900 hover:bg-slate-100'
+                      ? 'bg-health-50 text-health-700 shadow-[inset_0_0_0_1px_rgb(134,239,172,0.4)]'
+                      : 'text-slate-500 hover:text-slate-900 hover:bg-slate-50'
                   }`
                 }
               >
@@ -83,19 +83,26 @@ export default function Layout({ children }: LayoutProps) {
       </header>
 
       {/* Bottom nav — mobile only */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-30 bg-white border-t border-slate-100 flex" aria-label="Navegación principal">
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-30 bg-white/95 backdrop-blur-md border-t border-slate-100 flex shadow-[0_-1px_8px_0_rgb(0,0,0,0.05)]" aria-label="Navegación principal">
         {navLinks.map(({ to, label, icon: Icon }) => (
           <NavLink
             key={to}
             to={to}
             className={({ isActive }) =>
-              `flex-1 flex flex-col items-center gap-0.5 py-2 text-[10px] font-medium transition-colors min-h-[44px] justify-center ${
-                isActive ? 'text-health-600' : 'text-slate-500'
+              `flex-1 flex flex-col items-center gap-0.5 py-2 text-[10px] font-medium transition-colors min-h-[44px] justify-center relative ${
+                isActive ? 'text-health-600' : 'text-slate-400 hover:text-slate-600'
               }`
             }
           >
-            <Icon size={18} />
-            {label}
+            {({ isActive }) => (
+              <>
+                {isActive && (
+                  <span className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-health-500 rounded-full" aria-hidden="true" />
+                )}
+                <Icon size={18} />
+                {label}
+              </>
+            )}
           </NavLink>
         ))}
       </nav>

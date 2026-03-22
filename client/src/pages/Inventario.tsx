@@ -35,7 +35,7 @@ export default function Inventario() {
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h1 className="text-xl font-bold text-slate-900">Inventario</h1>
+        <h1 className="text-xl font-bold text-slate-900 tracking-tight">Inventario</h1>
         <div className="flex gap-2">
           {/* Export buttons: min 44×44 touch target */}
           <button
